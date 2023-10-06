@@ -16,26 +16,26 @@ public class WeatherApi {
 	
 	
 	@GetMapping("/current")
-	public Wheather getCurrent(
+	public String getCurrent(
 			@RequestParam(name ="location",defaultValue = "madurai") String location ) {
 		
 		String a=restTemplate.getForObject(base+"current?access_key="+key+"&query="+location, String.class);
 		
 		JSONObject json = new JSONObject(a);
 		
-		Wheather wheather = new Wheather();
+//		Wheather wheather = new Wheather();
+//		
+//		wheather.setWeather_descriptions((String)json.getJSONObject("current").getJSONArray("weather_descriptions").get(0));
+//		wheather.setObservation_time(json.getJSONObject("current").getString("observation_time"));
+//		wheather.setCountry(json.getJSONObject("location").getString("country"));
+//		wheather.setHumidity(json.getJSONObject("current").getDouble("humidity"));
+//		wheather.setPressure(json.getJSONObject("current").getDouble("pressure"));
+//		
+//		wheather.setRegion(json.getJSONObject("location").getString("region"));
+//		//wheather.setTemperature(json.getJSONObject("current").getDouble("temperature"));
+//		wheather.setLocaltime(json.getJSONObject("location").getString("timezone_id"));
 		
-		wheather.setWeather_descriptions((String)json.getJSONObject("current").getJSONArray("weather_descriptions").get(0));
-		wheather.setObservation_time(json.getJSONObject("current").getString("observation_time"));
-		wheather.setCountry(json.getJSONObject("location").getString("country"));
-		wheather.setHumidity(json.getJSONObject("current").getDouble("humidity"));
-		wheather.setPressure(json.getJSONObject("current").getDouble("pressure"));
-		
-		wheather.setRegion(json.getJSONObject("location").getString("region"));
-		wheather.setTemperature(json.getJSONObject("current").getDouble("temperature"));
-		wheather.setLocaltime(json.getJSONObject("location").getString("timezone_id"));
-		
-		return wheather;
+		return a;
 	}
 	
 }
